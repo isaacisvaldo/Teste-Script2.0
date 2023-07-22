@@ -45,6 +45,8 @@ function tarefaApos19h(): void {
   regra.second = new schedule.Range(0, 59); // Executar a cada segundo (0 a 59)
   const job = schedule.scheduleJob(regra, tarefaApos19h);
 */
+
+/*
   // Função que será executada somente após as 19h e antes das 00h
     function tarefaApos19h(): void {
      const horaAtual = new Date().getHours();
@@ -53,3 +55,7 @@ function tarefaApos19h(): void {
     }
   }
   const job = schedule.scheduleJob('* * 19-23 * * *', tarefaApos19h);
+  */
+
+  
+
