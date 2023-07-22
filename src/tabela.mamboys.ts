@@ -15,7 +15,7 @@ export function getHoraAtual(): string {
     const segundos = String(dataAtual.getSeconds()).padStart(2, '0');
     return `${hora}:${minutos}:${segundos}`;
 }
-export function getHoliday(data: any): any {
+export function getHoliday(data: string): unknown {
     return acronymcountry.isHoliday(data)
 }
 const dataFormatada = getDataAtual();
@@ -31,7 +31,7 @@ if (Holiday){// caso for feriado
     }else{
         console.log('Tarefa Normal a ser executado Porque ainda não são 10h ' + horaAtual);
     }
-}else{// caso Não for feriado
+   }else{// caso Não for feriado
     console.log('Não é feriado em Angola.');
     //O Sistema pode alterar a tabela de Ganho do Mamboys apartir das 20h ate o fim da Operação;
 
