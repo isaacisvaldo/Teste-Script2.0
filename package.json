@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "dev:script": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.script.ts",
-    "dev:fe": "tsnd --transpile-only --respawn --ignore-watch node_modules src/feriados.ts"
+    "dev:fe": "tsnd --transpile-only --respawn --ignore-watch node_modules src/feriados.ts",
+    "dev:pro": "tsnd --transpile-only --respawn --ignore-watch node_modules src/tabela.mamboys"
   },
   "license": "MIT",
   "dependencies": {

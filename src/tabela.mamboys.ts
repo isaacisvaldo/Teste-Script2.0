@@ -25,7 +25,19 @@ console.log(dataFormatada);
 console.log(horaAtual);
 if (Holiday){// caso for feriado
     console.log('É feriado em Angola!');
-   
+    //O Sistema pode alterar a tabela de Ganho do Mamboys apartir das 10h ate o fim da Operação Por feriado;
+    if (horaAtual > '09:59:59') {
+        console.log('Tarefa executada Apartir das 10h' + horaAtual);
+    }else{
+        console.log('Tarefa Normal a ser executado Porque ainda não são 10h ' + horaAtual);
+    }
 }else{// caso Não for feriado
-  
+    console.log('Não é feriado em Angola.');
+    //O Sistema pode alterar a tabela de Ganho do Mamboys apartir das 20h ate o fim da Operação;
+
+    if(horaAtual > '19:59:59') {
+        console.log('Tarefa executada após as 19h.' + horaAtual);
+    }else{
+        console.log('Tarefa Normal a ser executado Antes das 20h em um dia Normal ' + horaAtual);
+    }
 }
