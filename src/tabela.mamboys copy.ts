@@ -62,7 +62,7 @@ const diaSemana = getDiaSemana()
 const Holiday = getHoliday(dataFormatada)
 console.log(Holiday)
 
-if (Holiday){// caso for feriado
+if (Holiday){// caso for feriado    
     console.log('É feriado em Angola!');
     //O Sistema pode alterar a tabela de Ganho do Mamboys apartir das 10h ate o fim da Operação Por feriado;
         console.log('Sofrerá Atualização da Tabela de preços de ganho sera conssiderada distancia maxima quando exceder os 5km');
