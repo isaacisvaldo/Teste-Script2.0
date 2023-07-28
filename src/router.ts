@@ -1,9 +1,8 @@
 import { Router } from 'express';
-
 const routes = Router()
 
 
-routes.get('/', async (request, response) => {
+routes.put('/api/v3/trips/:tripId', async (request, response) => {
     response.send("Esta operacional");
 })
 
