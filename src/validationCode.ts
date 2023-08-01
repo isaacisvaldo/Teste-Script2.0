@@ -53,7 +53,6 @@ interface ObjetoComCodigo {
   dataExpiracao: string;
   condition: string; 
 }
-
 function lerArquivo(caminhoArquivo: string): ObjetoComCodigo[] {
   const conteudoDoArquivo = fs.readFileSync(caminhoArquivo, 'utf8');
   return JSON.parse(conteudoDoArquivo) as ObjetoComCodigo[];
@@ -81,7 +80,6 @@ function exemploPesquisa(codigoPesquisado: string) {
     console.error('Erro ao executar a pesquisa:', error);
   }
 }
-
 function isDataExpirada(dataExpiracao: string): boolean {
   const dataAtual = new Date();
   const dataExpiracaoObj = new Date(dataExpiracao);
