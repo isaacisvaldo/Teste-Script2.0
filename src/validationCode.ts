@@ -48,46 +48,51 @@ export function persistData(codigos: any): any {
   });
 
 }
-export async function lerArquivo(caminhoArquivo: string): Promise<string>{
-  return new Promise((resolve, reject) => {
-    fs.readFile(caminhoArquivo, 'utf8', (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        return data;
-      }
-    });
-  });
+interface ObjetoComCodigo {
+  codigo: string;
+  dataExpiracao: string;
+  condition: string; 
 }
-async function pesquisarPorCodigo(codigo: string) {
+
+function lerArquivo(caminhoArquivo: string): ObjetoComCodigo[] {
+  const conteudoDoArquivo = fs.readFileSync(caminhoArquivo, 'utf8');
+  return JSON.parse(conteudoDoArquivo) as ObjetoComCodigo[];
+}
+function pesquisarPorCodigo(codigo: string, listaObjetos: ObjetoComCodigo[]): ObjetoComCodigo | any {
+  const objetoEncontrado = listaObjetos.find((objeto) => objeto.codigo === codigo);
+  return objetoEncontrado || null;
+}
+function exemploPesquisa(codigoPesquisado: string) {
   try {
-    const caminhoArquivo = './dados.json';
-    const frutas: string[] = [];
-    const data =lerArquivo(caminhoArquivo);
-    const presentes =[
-      { "codigo": "ZYkENw", "dataExpiracao": "2023-07-28T18:10:58.878Z", "condição": "pendente" },
-      { "codigo": "K9ef4N", "dataExpiracao": "2023-07-28T18:11:31.328Z", "condição": "pendente" },
-      { "codigo": "O7Zskz", "dataExpiracao": "2023-07-28T18:11:40.735Z", "condição" : "pendente" },
-      { "codigo": "5JDZ1T", "dataExpiracao": "2023-07-28T18:11:45.470Z", "condição": "pendente" },
-      { "codigo": "G2m8PD", "dataExpiracao": "2023-07-28T18:13:39.446Z", "condição":"pendente" },
-      { "codigo": "WLmiGt", "dataExpiracao": "2023-07-28T18:13:46.579Z", "condição": "pendente" },
-      { "codigo": "mZsKfF", "dataExpiracao": "2023-07-28T18:13:54.953Z", "condição": "pendente" }
-    ];
-  console.log(frutas)
-    const presente =  presentes.find(p => p.codigo === codigo);
-  
-    if (presente) {
-      return presente;
+    const caminhoDoArquivo = './dados.json';
+    const listaObjetos = lerArquivo(caminhoDoArquivo);
+
+    
+    const objetoEncontrado = pesquisarPorCodigo(codigoPesquisado, listaObjetos);
+
+    if (objetoEncontrado) {
+      return objetoEncontrado;
+     
     } else {
-      return "Código de presente não encontrado.";
+   
+      return  'Código não encontrado na lista.'
     }
   } catch (error) {
-    console.error('Erro ao ler o arquivo:', error);
-    return undefined;
+    console.error('Erro ao executar a pesquisa:', error);
   }
 }
 
-
+function isDataExpirada(dataExpiracao: string): boolean {
+  const dataAtual = new Date();
+  const dataExpiracaoObj = new Date(dataExpiracao);
+  return dataAtual >= dataExpiracaoObj;
+}
+const objetoRetornado = exemploPesquisa('lyXJdn')
+if (isDataExpirada(objetoRetornado.dataExpiracao)) {
+  console.log('A data de expiração já passou.');
+} else {
+  console.log('Ainda está dentro do prazo.');
+}
 interface Objeto {
   codigo: string;
   dataExpiracao: Date;
@@ -101,6 +106,5 @@ const codigoInfo: Objeto = {
   condition: 'pendente'
 };
 persistData(codigoInfo)
-pesquisarPorCodigo('')
-console.log(pesquisarPorCodigo('ZYkENw'))
+
 
