@@ -74,7 +74,7 @@ function exemploPesquisa(codigoPesquisado: string) {
      
     } else {
    
-      return  'Código não encontrado na lista.'
+      return  'Código não encontrado.'
     }
   } catch (error) {
     console.error('Erro ao executar a pesquisa:', error);
@@ -85,10 +85,12 @@ function isDataExpirada(dataExpiracao: string): boolean {
   const dataExpiracaoObj = new Date(dataExpiracao);
   return dataAtual >= dataExpiracaoObj;
 }
-const objetoRetornado = exemploPesquisa('lyXJdn')
+const objetoRetornado = exemploPesquisa('aiCGuT')
 if (isDataExpirada(objetoRetornado.dataExpiracao)) {
+  console.log(objetoRetornado)
   console.log('A data de expiração já passou.');
 } else {
+  console.log(objetoRetornado)
   console.log('Ainda está dentro do prazo.');
 }
 interface Objeto {
@@ -97,12 +99,12 @@ interface Objeto {
   condition: string;
 }
 const codigo = gerarCodigo();
-const dataExpiracao = new Date(Date.now() + 5 * 60000); // Adiciona 5 minutos à data atual
+const dataExpiracao = new Date(Date.now() + 5 * 60000); 
 const codigoInfo: Objeto = {
   codigo: codigo,
   dataExpiracao: dataExpiracao,
   condition: 'pendente'
 };
-persistData(codigoInfo)
+//persistData(codigoInfo)
 
 
