@@ -1,27 +1,22 @@
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
-import twilio from 'twilio';
+import { Twilio } from 'twilio';
 
 
- export async function  getSms(phoneNumber:string, message:string ){
-
-   admin.initializeApp();
-
-const accountSid = 'YOUR_TWILIO_ACCOUNT_SID';
-const authToken = 'YOUR_TWILIO_AUTH_TOKEN';
-const twilioNumber = 'YOUR_TWILIO_PHONE_NUMBER';
-
-const client = twilio(accountSid, authToken);
-
-
-  try {
-    await client.messages.create({
-      body: message,
-      from: twilioNumber,
-      to: phoneNumber,
+async function sendSMS(message: string, phone: string) {
+  const accountSid = 'ACd1a6312ba5e15eb1d1b855c0c3783eac';
+  const authToken = 'c0933d30bfbfaaf1fb17f537be77c669';
+  const client = new Twilio(accountSid, authToken);
+  client.messages
+    .create({
+  
+      from: '+14707458483',
+      to: `+244${phone}`,
+      body: message
+    })
+    .then(message => console.log('A seguinte Mensagem foi enviada:' + message.body)).catch((err) => {
+      console.log(err)
     });
-    return { success: true, message: 'SMS enviado com sucesso!' };
-  } catch (error) {
-    throw new functions.https.HttpsError('internal', 'Erro ao enviar o SMS.', error);
-  }
 }
+
+const message ='Codigo de Validação:APL123'
+const phone= '930333042'
+sendSMS(message, phone)

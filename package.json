@@ -7,7 +7,8 @@
     "dev:script": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.script.ts",
     "dev:fe": "tsnd --transpile-only --respawn --ignore-watch node_modules src/feriados.ts",
     "dev:pro": "tsnd --transpile-only --respawn --ignore-watch node_modules src/tabela.mamboys",
-    "dev:cod": "tsnd --transpile-only --respawn --ignore-watch node_modules src/validationCode.ts"
+    "dev:cod": "tsnd --transpile-only --respawn --ignore-watch node_modules src/validationCode.ts",
+    "dev:sms": "tsnd --transpile-only --respawn --ignore-watch node_modules src/sms.ts"
   },
   "license": "MIT",
   "dependencies": {
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "@types/follow-redirects": "^1.14.1",
     "@types/node": "^18.15.11",
     "@types/node-cron": "^3.0.8",
     "@types/node-schedule": "^2.1.0",
