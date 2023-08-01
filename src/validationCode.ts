@@ -1,5 +1,6 @@
 
 import fs from 'fs';
+import { Twilio } from 'twilio';
 export function gerarCodigoAleatorio(tamanho: number): string {
   const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let codigo = "";
@@ -85,14 +86,20 @@ function isDataExpirada(dataExpiracao: string): boolean {
   const dataExpiracaoObj = new Date(dataExpiracao);
   return dataAtual >= dataExpiracaoObj;
 }
-const objetoRetornado = exemploPesquisa('aiCGuT')
-if (isDataExpirada(objetoRetornado.dataExpiracao)) {
-  console.log(objetoRetornado)
-  console.log('A data de expiração já passou.');
-} else {
-  console.log(objetoRetornado)
-  console.log('Ainda está dentro do prazo.');
+const objetoRetornado = exemploPesquisa('0Ctnye')
+console.log(objetoRetornado)
+
+async function ValidateCode(code: string){
+  const objetoRetornado = exemploPesquisa(code)
+  if (isDataExpirada(objetoRetornado.dataExpiracao)) {
+    console.log('A data de expiração já passou.');
+  } else {
+    console.log(objetoRetornado)
+    console.log('Ainda está dentro do prazo.');
+  }
 }
+ValidateCode('0Ctnye')
+
 interface Objeto {
   codigo: string;
   dataExpiracao: Date;
@@ -105,6 +112,28 @@ const codigoInfo: Objeto = {
   dataExpiracao: dataExpiracao,
   condition: 'pendente'
 };
+
+
+
+async function sendSMS(message: string, phone: string) {
+  const accountSid = 'ACd1a6312ba5e15eb1d1b855c0c3783eac';
+const authToken = 'c71f56c323bc0bc38c575766390d205a';
+  const client = new Twilio(accountSid, authToken);
+  client.messages
+    .create({
+  
+      from: '+14707458483',
+      to: `+244${phone}`,
+      body: message
+    })
+    .then(message => console.log('A seguinte Mensagem foi enviada:')).catch((err) => {
+      console.log(err)
+    });
+}
+
+const message = `Codigo de Validação:${codigo}`
+const phone= '930333042'
 //persistData(codigoInfo)
+//sendSMS(message, phone)
 
 

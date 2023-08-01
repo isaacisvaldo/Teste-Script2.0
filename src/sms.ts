@@ -3,7 +3,7 @@ import { Twilio } from 'twilio';
 
 async function sendSMS(message: string, phone: string) {
   const accountSid = 'ACd1a6312ba5e15eb1d1b855c0c3783eac';
-  const authToken = 'c0933d30bfbfaaf1fb17f537be77c669';
+const authToken = 'c71f56c323bc0bc38c575766390d205a';
   const client = new Twilio(accountSid, authToken);
   client.messages
     .create({
