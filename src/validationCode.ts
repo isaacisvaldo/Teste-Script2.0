@@ -137,8 +137,8 @@ const message = `Codigo de Validação:${codigo}`
 const phone= '930333042'
 //persistData(codigoInfo)
 //sendSMS(message, phone)
-const objetoRetornado = exemploPesquisa('0Ctnyen')
+const objetoRetornado = exemploPesquisa('0Ctnye')
 console.log(objetoRetornado)
-ValidateCode('0Ctnyen')
+ValidateCode('0Ctnye')
 
 
