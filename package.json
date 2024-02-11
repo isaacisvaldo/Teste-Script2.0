@@ -1,9 +1,10 @@
+
 {
   "name": "teste-scripts2.0",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
+    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/delimitation.ts",
     "dev:script": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.script.ts",
     "dev:fe": "tsnd --transpile-only --respawn --ignore-watch node_modules src/feriados.ts",
     "dev:pro": "tsnd --transpile-only --respawn --ignore-watch node_modules src/tabela.mamboys",
@@ -21,6 +22,7 @@
     "mongoose": "^7.0.3",
     "node-cron": "^3.0.2",
     "node-schedule": "^2.1.1",
+    "point-in-polygon": "^1.1.0",
     "twilio": "^4.14.0"
   },
   "devDependencies": {
@@ -29,6 +31,7 @@
     "@types/node": "^18.15.11",
     "@types/node-cron": "^3.0.8",
     "@types/node-schedule": "^2.1.0",
+    "@types/point-in-polygon": "^1.1.5",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "dotenv": "^16.3.1",
