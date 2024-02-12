@@ -1,4 +1,4 @@
-import pointInPolygon from 'point-in-polygon';
+import { isPointInPolygon } from "geolib";
 
 interface Coordenada {
     lat: number;
@@ -6,15 +6,15 @@ interface Coordenada {
 }
 
 export async function verificaCoordenada(coord: Coordenada, poligono: Coordenada[]): Promise<boolean> {
-    return pointInPolygon([coord.lng, coord.lat], poligono.map(ponto => [ponto.lng, ponto.lat]));
+    return isPointInPolygon(coord, poligono  );
+  
 }
-
 const zona:Coordenada[] = [
     
     // { lat: 0, lng: 0 }, 
-    // { lat: 0, lng: 4 },
-    // { lat: 4, lng: 4 },
-    // { lat: 4, lng: 0 } 
+    // { lat: 0, lng: 5 },
+    // { lat: 5, lng: 5 },
+    // { lat: 5, lng: 0 } 
     
     {lat:-8.928030826087861,lng: 13.173694681403564},
     {lat:-8.754338254048045,lng: 13.3947945392068},
@@ -23,9 +23,16 @@ const zona:Coordenada[] = [
 
 ];
 const ponto: Coordenada = {
-    lat: -8.799126194020227, 
-    lng: 13.357715681065883
+    lat: -8.877421945290076, 
+    lng: 13.282029824406775
+    // lat: 4,
+    // lng:3
 };
+
+
+
+
+
 
 verificaCoordenada(ponto, zona).then(estaDentro => {
     if (estaDentro) {
